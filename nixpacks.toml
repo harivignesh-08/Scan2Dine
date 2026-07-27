@@ -1,6 +1,12 @@
 # Nixpacks Configuration for Unified Spring Boot + React Deployment on Railway
 providers = ["node", "java"]
 
+[phases.install]
+cmds = [
+  "npm install",
+  "cd backend && mvn dependency:list -B -DskipTests"
+]
+
 [phases.build]
 cmds = [
   "cd frontend && npm install && npm run build",
