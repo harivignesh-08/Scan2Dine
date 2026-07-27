@@ -1,0 +1,15 @@
+# Nixpacks Configuration for Unified Spring Boot + React Deployment on Railway
+[providers]
+names = ["node", "java"]
+
+[phases.setup]
+nixPkgs = ["jdk21", "nodejs"]
+
+[phases.build]
+cmds = [
+  "cd frontend && npm install && npm run build",
+  "mvn package -DskipTests"
+]
+
+[start]
+cmd = "java -jar target/api-1.0.0-SNAPSHOT.jar"

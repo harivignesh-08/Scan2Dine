@@ -1,0 +1,50 @@
+# Maven build output
+target/
+
+# Git
+.git/
+.gitignore
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Node (if your project contains frontend files)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*
+
+# Temporary files
+tmp/
+temp/
+
+# Maven Wrapper cache
+.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ
+out/
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# VS Code
+.history/
+
+# Backup files
+*.bak
+*.swp
