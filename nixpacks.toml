@@ -1,10 +1,12 @@
 # Nixpacks Configuration for Unified Spring Boot + React Deployment on Railway
-providers = ["node", "java"]
+providers = ["node"]
+
+[phases.setup]
+nixPkgs = ["jdk21", "maven"]
 
 [phases.install]
 cmds = [
-  "npm install",
-  "cd backend && mvn dependency:list -B -DskipTests"
+  "npm install"
 ]
 
 [phases.build]
