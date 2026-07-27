@@ -8,8 +8,8 @@ nixPkgs = ["jdk21", "nodejs"]
 [phases.build]
 cmds = [
   "cd frontend && npm install && npm run build",
-  "mvn package -DskipTests"
+  "cd backend && mvn package -DskipTests"
 ]
 
 [start]
-cmd = "java -jar target/api-1.0.0-SNAPSHOT.jar"
+cmd = "java -jar backend/target/api-1.0.0-SNAPSHOT.jar"

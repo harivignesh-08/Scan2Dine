@@ -1,0 +1,22 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Frontend Build
+frontend/dist/
+frontend/node_modules/
+
+# Backend Build
+backend/target/
+backend/out/
+
+# IDE / System
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log

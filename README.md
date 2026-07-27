@@ -12,11 +12,25 @@ Scan2Dine is a multi-tenant cloud application that enables colleges to manage ho
 - **Persistence**: Spring Data JPA, Hibernate (with Tenant Filtering Aspect), MySQL
 - **Reports**: OpenPDF (PDF creation), Apache POI (Excel spreadsheet creation)
 - **Documentation**: Springdoc OpenAPI (Swagger Web UI)
-- **Frontend client**: Single Page HTML5 App with light theme styling (Vanilla CSS, dynamic theme variables, native fetch APIs)
+- **Frontend client**: React + Vite (Tailwind CSS, dynamic theme variables, native fetch APIs)
+
+## Directory Structure
+```text
+scan2dine-workspace/
+ ├── backend/          # Spring Boot Java Backend
+ │    ├── src/         # Java application source code
+ │    └── pom.xml      # Maven Project Configuration
+ ├── frontend/         # React + Vite Frontend
+ │    ├── src/         # React components, pages, context
+ │    └── package.json # Frontend Node dependencies and scripts
+ ├── package.json      # Workspace orchestrator for running both concurrently
+ └── README.md         # Documentation
+```
 
 ---
 
 ## Package Architecture Structure
+Inside `backend/src/main/java`:
 ```text
 com.scan2dine.api
  ├── config            # TenantContext, TenantAspect, DataSeeder, SpringDocConfig
@@ -24,8 +38,6 @@ com.scan2dine.api
  ├── entity            # BaseEntity, College, User, Student, Hostel, Room, Meal, Attendance, BarcodeRegistration, Notification, Report
  ├── repository        # JpaRepositories
  ├── dto
- │    ├── request      # Request payload models (Login, Register, StudentRequest, etc.)
- │    └── response     # Response payloads (AuthResponse, ApiResponse, DashboardResponse, etc.)
  ├── mapper            # Domain entity to DTO mapping layer
  ├── service           # Service interfaces
  ├── service.impl      # Service implementation logic
@@ -55,19 +67,44 @@ Make sure you have a MySQL server running. Create the database named `scan2dine`
 CREATE DATABASE IF NOT EXISTS `scan2dine` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Update your database username and password in [application.properties](file:///c:/Users/Ariharan/Downloads/Saas/src/main/resources/application.properties) if necessary.
+Update your database username and password in [application.properties](file:///c:/Users/Ariharan/Downloads/dining/backend/src/main/resources/application.properties) if necessary.
 
 ### 2. Launch the Application
-Run the Maven spring-boot plugin from the project root:
+
+#### A. Concurrent Dev Mode (Recommended)
+You can run both the frontend dev server and the backend Spring Boot app concurrently with a single command from the project root:
 ```bash
+npm install
+npm run dev
+```
+- Frontend: **[http://localhost:5173/](http://localhost:5173/)** (with hot-reloading)
+- Backend API: **[http://localhost:8080/](http://localhost:8080/)**
+
+#### B. Running Services Independently
+
+##### Backend only
+```bash
+cd backend
 mvn spring-boot:run
 ```
 
-### 3. Open the Frontend Interface
-Open your web browser and navigate to:
-👉 **[http://localhost:8080/](http://localhost:8080/)**
+##### Frontend only
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-The single-page dashboard serves from the static classpath and is immediately interactive.
+#### C. Production Build
+To build and package both the frontend and backend into a single runnable JAR:
+```bash
+npm run build
+```
+The compiled frontend will be written to `backend/src/main/resources/static/`, and the final JAR package will be created in `backend/target/api-1.0.0-SNAPSHOT.jar`. Run it with:
+```bash
+java -jar backend/target/api-1.0.0-SNAPSHOT.jar
+```
+Open **[http://localhost:8080/](http://localhost:8080/)** to interact with the production application.
 
 ---
 
