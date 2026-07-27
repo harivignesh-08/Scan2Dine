@@ -1,6 +1,5 @@
 # Nixpacks Configuration for Unified Spring Boot + React Deployment on Railway
-[providers]
-names = ["node", "java"]
+providers = ["node", "java"]
 
 [phases.setup]
 nixPkgs = ["jdk21", "nodejs"]
