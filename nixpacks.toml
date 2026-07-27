@@ -2,7 +2,7 @@
 providers = ["node"]
 
 [phases.setup]
-nixPkgs = ["jdk21", "maven"]
+nixPkgs = ["jdk21", "maven", "nodejs"]
 
 [phases.install]
 cmds = [
